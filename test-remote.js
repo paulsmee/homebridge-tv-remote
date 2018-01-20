@@ -19,7 +19,7 @@ const exec = require('child_process').exec
 
 const remoteKeys = {}
 
-function mute(){
+remoteKeys.mute = function(){
     exec('irsend SEND_ONCE lg-remote KEY_MUTE', function(error){
         if (error) {
             console.error(`exec error: ${error}`)
@@ -28,9 +28,7 @@ function mute(){
     })
 }
 
-var buttonMute = mute()
-
-function power(){
+remoteKeys.power = function(){
     exec('irsend SEND_ONCE lg-remote KEY_POWER', function(error){
         if (error) {
             console.error(`exec error: ${error}`)
@@ -38,9 +36,8 @@ function power(){
         }
     })
 }
-var buttonPower = power()
 
-function volumeup(){
+remoteKeys.volumeup = function(){
     exec('irsend SEND_ONCE lg-remote KEY_VOLUMEUP', function(error){
         if (error) {
             console.error(`exec error: ${error}`)
@@ -48,9 +45,8 @@ function volumeup(){
         }
     })
 }
-var buttonVolumeup = volumeup()
 
-function volumedown(){
+remoteKeys.volumedown = function(){
     exec('irsend SEND_ONCE lg-remote KEY_VOLUMEDOWN', function(error){
         if (error) {
             console.error(`exec error: ${error}`)
@@ -58,11 +54,5 @@ function volumedown(){
         }
     })
 }
-var buttonVolumedown = volumedown()
-
-remote-keys.key-mute = buttonMute
-remote-keys.key-power = buttonPower
-remote-keys.key-volumeup = buttonVolumeup
-remote-keys.key-volumeup = buttonVolumedown
 
 module.exports = remoteKeys
