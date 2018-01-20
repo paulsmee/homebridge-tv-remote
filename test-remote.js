@@ -6,9 +6,9 @@ const exec = require('child_process').exec
 // I can change `exec` to be `+ command` and then have an array 
 // with each command, but am not sure how to then use it on `exports`
 
-// const buttons = {keys-mute: 'KEY_MUTE', keys-power: 'KEY_POWER', keys-up: 'KEY_VOLUMEUP', keys-down: 'KEY_VOLUMEDOWN'}
+// const buttons = {keysMute: 'KEY_MUTE', keysPower: 'KEY_POWER', keysUp: 'KEY_VOLUMEUP', keysDown: 'KEY_VOLUMEDOWN'}
 
-//function button-press(buttons){
+//function buttonPress(buttons){
 //    exec('irsend SEND_ONCE lg-remote ' + buttons, function(error){
 //        if (error) {
 //            console.error(`exec error: ${error}`)
@@ -17,7 +17,7 @@ const exec = require('child_process').exec
 //    })
 //}
 
-const remote-keys = {}
+const remoteKeys = {}
 
 function mute(){
     exec('irsend SEND_ONCE lg-remote KEY_MUTE', function(error){
@@ -28,7 +28,7 @@ function mute(){
     })
 }
 
-var button-mute = mute()
+var buttonMute = mute()
 
 function power(){
     exec('irsend SEND_ONCE lg-remote KEY_POWER', function(error){
@@ -38,7 +38,7 @@ function power(){
         }
     })
 }
-var button-power = power()
+var buttonPower = power()
 
 function volumeup(){
     exec('irsend SEND_ONCE lg-remote KEY_VOLUMEUP', function(error){
@@ -48,7 +48,7 @@ function volumeup(){
         }
     })
 }
-var button-volumeup = volumeup()
+var buttonVolumeup = volumeup()
 
 function volumedown(){
     exec('irsend SEND_ONCE lg-remote KEY_VOLUMEDOWN', function(error){
@@ -58,11 +58,11 @@ function volumedown(){
         }
     })
 }
-var button-volumedown = volumedown()
+var buttonVolumedown = volumedown()
 
-remote-keys.key-mute = button-mute
-remote-keys.key-power = button-power
-remote-keys.key-volumeup = button-volumeup
-remote-keys.key-volumeup = button-volumedown
+remote-keys.key-mute = buttonMute
+remote-keys.key-power = buttonPower
+remote-keys.key-volumeup = buttonVolumeup
+remote-keys.key-volumeup = buttonVolumedown
 
-module.exports = remote-keys
+module.exports = remoteKeys
