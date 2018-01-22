@@ -29,8 +29,8 @@ class RemoteAccessory {
      * Search for "* Service" to tab through each available service type.
      * Take note of the available "Required" and "Optional" Characteristics for the service you are creating
      */
-    this.powerSwitch = new Service.Switch('TV', 'power')
-    this.muteSwitch = new Service.Switch('Mute', 'mute');
+    this.powerSwitch = new Service.Switch('TV')
+    this.muteSwitch = new Service.Switch('Mute');
   }
 
   getServices () {
@@ -52,11 +52,11 @@ class RemoteAccessory {
      */
     this.powerSwitch.getCharacteristic(Characteristic.On)
       .on('get', this.getPowerSwitchHandler.bind(this))
-      .on('set', this.setPowerSwitchHandler.bind(this))
+      .on('get', this.getPowerSwitchHandler.bind(this))
 
-    this.muteSwitch.getCharacteristic(Characteristic.On)
+    this.mustSwitch.getCharacteristic(Characteristic.On)
       .on('get', this.getMuteSwitchHandler.bind(this))
-      .on('set', this.setMuteSwitchHandler.bind(this))
+      .on('get', this.getMuteSwitchHandler.bind(this))
 
     /* Return both the main service (this.powerSwitch) and the informationService */
     return [informationService, this.powerSwitch, this.muteSwitch]
@@ -64,13 +64,7 @@ class RemoteAccessory {
 
   setPowerSwitchHandler (value, callback) {
     this.log('called setPowerSwitchHandler')
-
     buttonPress('KEY_POWER')
-
-    setTimeout(() => {
-      /* Turn the switch off again to make it a stateless switch */
-      this.powerSwitch.getCharacteristic(Characteristic.On).updateValue(false)
-    }, 10)
 
     callback(null)
   }
@@ -83,14 +77,7 @@ class RemoteAccessory {
 
   setMuteSwitchHandler (value, callback) {
     this.log('called setMuteSwitchHandler')
-
     buttonPress('KEY_MUTE')
-
-    setTimeout(() => {
-      /* Turn the switch off again to make it a stateless switch */
-      this.muteSwitch.getCharacteristic(Characteristic.On).updateValue(false)
-    }, 10)
-
     callback(null)
   }
 
